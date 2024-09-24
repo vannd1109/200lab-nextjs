@@ -45,9 +45,6 @@ jobs:
           key: ${{ secrets.SSH_KEY }} # Private key để login vào server
 
           script: |
-            #Pull image về lại server
-            docker pull ${{ steps.meta.outputs.tags }}
-            #Xóa container cũ nếu có
-            docker rm -f 200lab-next &>/dev/null
-            #Chạy container mới
-            docker run -it -d --name 200lab-next -p 3000:3000 ${{ steps.meta.outputs.tags }}
+            docker pull ${{ steps.meta.outputs.tags }} #Pull image về lại server
+            docker rm -f 200lab-next &>/dev/null #Xóa container cũ nếu có
+            docker run -it -d --name 200lab-next -p 3000:3000 ${{ steps.meta.outputs.tags }} #Chạy container mới
